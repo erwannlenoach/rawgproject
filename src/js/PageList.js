@@ -1,5 +1,6 @@
 const PageList = (argument = "") => {
     const preparePage = () => {
+
       let articles = "";
   
       const fetchList = (url, argument) => {
@@ -16,6 +17,7 @@ const PageList = (argument = "") => {
                     <div class="cardGame">
                       <h1>${article.name}</h1>
                       <h2>${article.released}</h2>
+                      <h2>${article.id}</h2>
                       <a href = "#pagedetail/${article.id}">${article.id}</a>
                     </div>
                   `;
@@ -23,9 +25,7 @@ const PageList = (argument = "") => {
             document.querySelector(".page-list .articles").innerHTML = articles;
           });
       };
-  
-      fetchList("https://api.rawg.io/api/games?key=528babbc066842ebaf0b202ac5448d6e");
-    };
+      fetchList(`https://api.rawg.io/api/games?key=528babbc066842ebaf0b202ac5448d6e`);    };
   
     const render = () => {
       pageContent.innerHTML = `
