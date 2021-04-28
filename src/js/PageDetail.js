@@ -1,10 +1,12 @@
 require('./routes');
+import { key } from './key'
 
 const PageDetail = (argument) => {
   const preparePage = () => {
-
-
-
+    
+    let url = window.location.href;
+    let id = url.slice(82);
+  
     const fetchGame = (url) => {
       let finalURL = url;
 
@@ -22,7 +24,7 @@ const PageDetail = (argument) => {
     };
 
 
-    fetchGame(`https://api.rawg.io/api/games/3498?key=528babbc066842ebaf0b202ac5448d6e`)
+    fetchGame(`https://api.rawg.io/api/games/${id}?key=${key}`)
   };
 
   const render = () => {

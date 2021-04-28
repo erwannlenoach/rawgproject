@@ -1,4 +1,6 @@
 import { routes } from './routes'
+import '../sass/style.scss';
+
 
 let pageArgument;
 
@@ -13,4 +15,3 @@ const setRoute = () => {
 
 window.addEventListener("hashchange", () => setRoute());
 window.addEventListener("DOMContentLoaded", () => setRoute());
-

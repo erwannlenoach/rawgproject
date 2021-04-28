@@ -16,11 +16,23 @@
   </head>
 
   <body>
+    <label for="findgame">
+      <h2><b>Video Game Finder</b></h2>
+  </label><br>
+  <div> 
+      <div id="game">
+          <input class="input-search" type="text" class="form-control-lg input-search" placeholder="nom du jeu">
+          <button id="button" class="btn btn-secondary" type="submit" onclick="findGame()">Rechercher</button>
+      </div>
+
+  </div>
     <a href="#">Home</a>
     <a href="#pagelist">PageList</a>
-    <a href="#pagedetail/portal">PageDetail</a>
+    <a href="#pagedetail">PageDetail</a>
 
     <section id="pageContent">Choisissez un lien</section>
+
+
     <script src="./dist/bundle.js"></script>
   </body>
 </html>
