@@ -1,21 +1,24 @@
 import { key } from './key'
 
 function findGame(){
-  let inputSearch = document.querySelector('.input-search')
-  console.log(inputSearch.value)
+  let inputSearch = document.querySelector('.input-search').value
+  console.log(inputSearch)
+  PageList(inputSearch)
+
 }
 
 window.findGame = findGame;
 
-const PageList = (argument = "") => {
+function PageList(argument){
   const preparePage = () => {
+    let inputSearch = argument
 
     let articles = "";
 
     const fetchList = (url, argument) => {
       let finalURL = url;
       if (argument) {
-        finalURL = url + "?search=" + argument;
+        finalURL = url + "&search=" + argument;
       }
 
       fetch(`${finalURL}`)
@@ -34,7 +37,7 @@ const PageList = (argument = "") => {
           document.querySelector(".page-list .articles").innerHTML = articles;
         });
     };
-    fetchList(`https://api.rawg.io/api/games?key=${key}`);
+    fetchList(`https://api.rawg.io/api/games?key=${key}`, argument);
   };
 
   const render = () => {
