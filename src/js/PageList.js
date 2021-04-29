@@ -22,7 +22,7 @@ function PageList(argument){
   const preparePage = () => {
      
     let now = dayjs().format('YYYY-MM-DD');
-    let releasedDate = dayjs().add(1, 'year').format('YYYY-MM-DD')
+    let nextyear = dayjs().add(1, 'year').format('YYYY-MM-DD')
   
 
     let articles = "";
@@ -32,7 +32,7 @@ function PageList(argument){
       if (argument) {
         finalURL = url + "&search=" + argument;
       } else {
-        finalURL = url +  `&dates=${now},${releasedDate}`;
+        finalURL = url +  `&dates=${now},${nextyear}`;
       }
 
       // finalURL = finalURL + "&platforms=" + argument

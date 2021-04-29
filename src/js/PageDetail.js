@@ -4,9 +4,8 @@ import { key } from './key'
 const PageDetail = (argument) => {
   const preparePage = () => {
     
-    let url = window.location.href;
-    let id = url.slice(82);
-  
+    let id = window.location.hash.substring(1).split("/")[1]
+ 
     const fetchGame = (url) => {
       let finalURL = url;
 
@@ -37,6 +36,7 @@ const PageDetail = (argument) => {
           // tags 
           tags.forEach(x => articleDOM.querySelector("a.tags").innerHTML += `<br>${x.name}</br>`)
           articleDOM.querySelector("a.tags").setAttribute('href', "#pagelist")
+          
           // genres 
           genres.forEach(x => articleDOM.querySelector("a.genres").innerHTML += `<br>${x.name}</br>`)
           articleDOM.querySelector("a.genres").setAttribute('href', "#pagelist")
@@ -86,3 +86,22 @@ const PageDetail = (argument) => {
 
 
 export { PageDetail };
+
+
+// * Le nom du jeu DONE 
+// * Une image principale de présentation DONE 
+// * La description du jeu DONE 
+// * La date de sortie DONE 
+// * Le nom du/des studio(s) de développement (lien(s) interne(s) vers le template PageList)
+// * Les tags correspondants au jeu (lien(s) interne(s) vers le template PageList) DONE
+// * Le/Les genre(s) du jeu (lien(s) interne(s) vers le template PageList) DONE 
+// * Le nom de l'éditeur (lien(s) interne(s) vers le template PageList)
+// * Les plateformes disponibles à la sortie du jeu (lien(s) interne(s) vers le template PageList) DONE 
+// * Le site Web du jeu (lien externe) DONE 
+// * Une vidéo de présentation (Lecteur HTML 5 interne)
+// * La moyenne des notes
+// * Le nombre de notes
+// * Quatre screenshots du jeu
+// * Le/Les lien(s) pour acheter le jeu (lien(s) externe(s))
+// * Une liste de jeux ressemblants au jeu (lien interne vers un jeu sur PageDetail)
+//* Une liste de vidéos YouTube parlant du jeu (Lien externe vers YouTube)
