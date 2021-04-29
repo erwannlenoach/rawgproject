@@ -5,7 +5,7 @@ const PageDetail = (argument) => {
   const preparePage = () => {
     
     let id = window.location.hash.substring(1).split("/")[1]
- 
+    console.log(id)
     const fetchGame = (url) => {
       let finalURL = url;
 
@@ -14,7 +14,7 @@ const PageDetail = (argument) => {
         .then((response) => {
        
           let { name, released, description,background_image, platforms,genres, tags, website, developers, ratings, ratings_count} = response;
-          console.log(response.ratings_count)
+          console.log(response)
 
           // render game details
   
@@ -115,5 +115,6 @@ export { PageDetail };
 // TODO: Une liste de jeux ressemblants au jeu (lien interne vers un jeu sur PageDetail)
 // TODO: Une liste de vidéos YouTube parlant du jeu (Lien externe vers YouTube)
 
+// TODO: appli version .io + readme.Md  
 
 

@@ -45,7 +45,7 @@ function PageList(argument){
                     <div card="cardGame"=>
                       <h1>${article.name}</h1>
                       <h2>Release date: ${article.released}</h2>
-                      <a href = "#pagedetail/${article.id}">More information</a>
+                      <a href = "#pagedetail/${article.slug}">More information</a>
                     </div>
                   `;
      
