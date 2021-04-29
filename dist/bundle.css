@@ -2,6 +2,11 @@
   font-family: "RUBBB";
   src: url(fonts/3fa36c3620735bc919e017731451bca8.ttf);
 }
+body {
+  color: white;
+  background-color: #000000;
+}
+
 #buttons {
   padding: 20px;
 }

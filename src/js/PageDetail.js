@@ -112,21 +112,22 @@ const PageDetail = (argument) => {
     pageContent.innerHTML = `
         <section class="page-detail">
           <div class="article">
-          <div id="gameimage">
-          <img id="mainImage">
-          </div>
-          <div id="video">
-          </div>
+       
             <h1 class="title"></h1>
-            <p class="release-date">Release date : <span></span></p>
+            <div id="gameimage">
+            <img id="mainImage">
+            </div>
+            <div id="video">
+            </div>
+          
             <p class="description"></p>
-            <h1 class="title"></h1>
+         
            
             
             <div id="screenshots">
   
             </div>
-
+            <p class="release-date">Release date : <span></span></p>
             <a class="dev"></a>
             <a class="genres"></a>
             <a class="tags"></a>
