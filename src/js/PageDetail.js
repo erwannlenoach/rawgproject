@@ -13,8 +13,8 @@ const PageDetail = (argument) => {
         .then((response) => response.json())
         .then((response) => {
        
-          let { name, released, description,background_image, platforms,genres, tags, website} = response;
-          console.log(response)
+          let { name, released, description,background_image, platforms,genres, tags, website, developers, ratings, ratings_count} = response;
+          console.log(response.ratings_count)
 
           // render game details
   
@@ -32,6 +32,15 @@ const PageDetail = (argument) => {
         
           articleDOM.querySelector("p.release-date span").innerHTML = released;
           articleDOM.querySelector("p.description").innerHTML = description;
+          if(released == null){
+            articleDOM.querySelector("p.release-date").innerHTML = "";
+          }
+
+          // developers
+
+          developers.forEach(x => articleDOM.querySelector("a.dev").innerHTML += `<br>${x.name}</br>`)
+          articleDOM.querySelector("a.dev").setAttribute('href', "#pagelist")
+         
         
           // tags 
           tags.forEach(x => articleDOM.querySelector("a.tags").innerHTML += `<br>${x.name}</br>`)
@@ -46,6 +55,12 @@ const PageDetail = (argument) => {
           platforms.forEach(x => articleDOM.querySelector("a.platforms").innerHTML += `<br>${x.platform.name}</br>`)
           articleDOM.querySelector("a.platforms").setAttribute('href', "#pagelist")
 
+          // amount of ratings 
+          articleDOM.querySelector("p.ratingsamount").innerHTML = `<br>${ratings_count} notes : </br>`;
+          //
+         ratings.forEach(x => articleDOM.querySelector("a.ratings").innerHTML += `<br>${x.title} : ${x.percent} % </br>`); 
+   
+          
           // website
 
           articleDOM.querySelector("a.website").innerHTML = website;
@@ -69,10 +84,12 @@ const PageDetail = (argument) => {
             <p class="release-date">Release date : <span></span></p>
             <p class="description"></p>
             <h1 class="title"></h1>
-            <p class="release-date">Release date : <span></span></p>
+            <a class="dev"></a>
             <a class="genres"></a>
             <a class="tags"></a>
             <a class="platforms"></a>
+            <p class="ratingsamount"></p>
+            <a class="ratings"></a>
             <a class="website"></a>
           </div>
         </section>
@@ -87,21 +104,16 @@ const PageDetail = (argument) => {
 
 export { PageDetail };
 
+ 
+// Le nom du/des studio(s) de développement (lien(s) interne(s) vers le template PageList) DONE
+// TODO: Quan ya pas de lien (DEV) il faut pas l'afficher :function HIDE avec le if
 
-// * Le nom du jeu DONE 
-// * Une image principale de présentation DONE 
-// * La description du jeu DONE 
-// * La date de sortie DONE 
-// * Le nom du/des studio(s) de développement (lien(s) interne(s) vers le template PageList)
-// * Les tags correspondants au jeu (lien(s) interne(s) vers le template PageList) DONE
-// * Le/Les genre(s) du jeu (lien(s) interne(s) vers le template PageList) DONE 
-// * Le nom de l'éditeur (lien(s) interne(s) vers le template PageList)
-// * Les plateformes disponibles à la sortie du jeu (lien(s) interne(s) vers le template PageList) DONE 
-// * Le site Web du jeu (lien externe) DONE 
-// * Une vidéo de présentation (Lecteur HTML 5 interne)
-// * La moyenne des notes
-// * Le nombre de notes
-// * Quatre screenshots du jeu
-// * Le/Les lien(s) pour acheter le jeu (lien(s) externe(s))
-// * Une liste de jeux ressemblants au jeu (lien interne vers un jeu sur PageDetail)
-//* Une liste de vidéos YouTube parlant du jeu (Lien externe vers YouTube)
+// TODO: Une vidéo de présentation (Lecteur HTML 5 interne)
+
+// TODO: Quatre screenshots du jeu
+// TODO: Le/Les lien(s) pour acheter le jeu (lien(s) externe(s))
+// TODO: Une liste de jeux ressemblants au jeu (lien interne vers un jeu sur PageDetail)
+// TODO: Une liste de vidéos YouTube parlant du jeu (Lien externe vers YouTube)
+
+
+
