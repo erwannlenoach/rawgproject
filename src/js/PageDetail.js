@@ -3,7 +3,7 @@ import { key } from './key'
 
 const PageDetail = (argument) => {
   const preparePage = () => {
-    
+
     let id = window.location.hash.substring(1).split("/")[1]
     console.log(id)
     const fetchGame = (url) => {
@@ -12,12 +12,12 @@ const PageDetail = (argument) => {
       fetch(`${finalURL}`)
         .then((response) => response.json())
         .then((response) => {
-       
-          let { name, released, description,background_image, platforms,genres, tags, website, developers, ratings, ratings_count} = response;
+
+          let { name, released, description, background_image, platforms, genres, tags, website, developers, ratings, ratings_count , stores} = response;
           console.log(response)
 
           // render game details
-  
+
           let articleDOM = document.querySelector(".page-detail .article");
 
           // name 
@@ -29,10 +29,10 @@ const PageDetail = (argument) => {
 
 
           // released date 
-        
+
           articleDOM.querySelector("p.release-date span").innerHTML = released;
           articleDOM.querySelector("p.description").innerHTML = description;
-          if(released == null){
+          if (released == null) {
             articleDOM.querySelector("p.release-date").innerHTML = "";
           }
 
@@ -40,12 +40,12 @@ const PageDetail = (argument) => {
 
           developers.forEach(x => articleDOM.querySelector("a.dev").innerHTML += `<br>${x.name}</br>`)
           articleDOM.querySelector("a.dev").setAttribute('href', "#pagelist")
-         
-        
+
+
           // tags 
           tags.forEach(x => articleDOM.querySelector("a.tags").innerHTML += `<br>${x.name}</br>`)
           articleDOM.querySelector("a.tags").setAttribute('href', "#pagelist")
-          
+
           // genres 
           genres.forEach(x => articleDOM.querySelector("a.genres").innerHTML += `<br>${x.name}</br>`)
           articleDOM.querySelector("a.genres").setAttribute('href', "#pagelist")
@@ -57,10 +57,17 @@ const PageDetail = (argument) => {
 
           // amount of ratings 
           articleDOM.querySelector("p.ratingsamount").innerHTML = `<br>${ratings_count} notes : </br>`;
-          //
-         ratings.forEach(x => articleDOM.querySelector("a.ratings").innerHTML += `<br>${x.title} : ${x.percent} % </br>`); 
-   
-          
+          // ratings
+          ratings.forEach(x => articleDOM.querySelector("a.ratings").innerHTML += `<br>${x.title} : ${x.percent} % </br>`);
+         
+          // stores
+          stores.forEach(x => articleDOM.querySelector("a.stores").innerHTML += `<br>${x.store.name} </br>`)
+
+           stores.forEach(x=> articleDOM.querySelector("a.stores").setAttribute('href', "https://" + x.store.domain)) // lien absolue
+           
+           //setAttribute('href', `${x.store.domain}`) )
+
+
           // website
 
           articleDOM.querySelector("a.website").innerHTML = website;
@@ -90,6 +97,7 @@ const PageDetail = (argument) => {
             <a class="platforms"></a>
             <p class="ratingsamount"></p>
             <a class="ratings"></a>
+            <a class="stores"></a>
             <a class="website"></a>
           </div>
         </section>
@@ -104,16 +112,19 @@ const PageDetail = (argument) => {
 
 export { PageDetail };
 
- 
-// Le nom du/des studio(s) de développement (lien(s) interne(s) vers le template PageList) DONE
-// TODO: Quan ya pas de lien (DEV) il faut pas l'afficher :function HIDE avec le if
+
+
+
+// TODO: Le/Les lien(s) pour acheter le jeu (lien(s) externe(s))
+
+// TODO: Une liste de jeux ressemblants au jeu (lien interne vers un jeu sur PageDetail)
+// TODO: Une liste de vidéos YouTube parlant du jeu (Lien externe vers YouTube)
 
 // TODO: Une vidéo de présentation (Lecteur HTML 5 interne)
 
 // TODO: Quatre screenshots du jeu
-// TODO: Le/Les lien(s) pour acheter le jeu (lien(s) externe(s))
-// TODO: Une liste de jeux ressemblants au jeu (lien interne vers un jeu sur PageDetail)
-// TODO: Une liste de vidéos YouTube parlant du jeu (Lien externe vers YouTube)
+
+// TODO: Quan ya pas de lien (DEV) il faut pas l'afficher :function HIDE avec le if
 
 // TODO: appli version .io + readme.Md  
 
