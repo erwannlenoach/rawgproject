@@ -4,7 +4,7 @@
 }
 body {
   color: white;
-  background-color: #000000;
+  background-color: #191919;
 }
 
 #buttons {
@@ -25,4 +25,9 @@ body {
 
 .genres {
   background-color: blue;
+}
+
+.cardGame {
+  background-color: #191919;
+  color: red;
 }

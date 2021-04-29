@@ -9,7 +9,7 @@ body {
    // background-image: url('../images/videogame.png');
    // background-size: cover;
    color: white;
-   background-color: #000000;
+   background-color: rgb(25, 25, 25);
 
   }
 
@@ -33,4 +33,10 @@ body {
 
  .genres {
   background-color: blue
+}
+
+.cardGame {
+
+  background-color: rgb(25, 25, 25);
+  color: red;
 }

@@ -1,5 +1,10 @@
 import { key } from './key'
 import dayjs from 'dayjs'
+import ps4Logo from '../images/ps4.svg';
+import linuxLogo from '../images/linux.svg';
+import mobileLogo from '../images/mobile.svg';
+import switchLogo from '../images/switch.svg';
+import xboxLogo from '../images/xbox.svg';
 
 
 function findGame(){
@@ -14,6 +19,35 @@ function findGame(){
 
   PageList(inputSearch)
 
+}
+
+function getPlatformLogo(platform) {
+  let logo = '';
+  if (platform.indexOf('playstation') > -1) {
+    logo = ps4Logo;
+  }
+
+  if (platform.indexOf('linux') > -1) {
+    logo = linuxLogo;
+  }
+
+  if (platform.indexOf('mobile') > -1) {
+    logo = mobileLogo;
+  }
+  
+  if (platform.indexOf('switch') > -1) {
+    logo = switchLogo;
+  }
+
+  if (platform.indexOf('xbox') > -1) {
+    logo = xboxLogo;
+  }
+
+  if (logo) {
+    return `<img src="./dist/${ logo }" />`;
+  }
+
+  return '';
 }
 
 window.findGame = findGame;
@@ -41,16 +75,24 @@ function PageList(argument){
         .then((response) => response.json())
         .then((response) => {
           response.results.forEach((article) => {
+            console.log(article)
             articles += `
-                    <div card="cardGame"=>
+                    <div class="cardGame card col-4" style="width: 18rem; margin: 20px auto; background-color: rgb(25, 25, 25) ">
+                      <img src="${article.background_image}" class="card-img-top" alt="...">
                       <h1>${article.name}</h1>
-                      <h2>Release date: ${article.released}</h2>
+                      <p class="platforms"></p>
                       <a href = "#pagedetail/${article.slug}">More information</a>
+                      <div class="logos">${ article.platforms.map(p => getPlatformLogo(p.platform.slug)).join('') }</div>
                     </div>
                   `;
+                  
+         // platforms.platform.forEach(x => document.getElementsByClassName("platforms").innerHTML += `<br>${x.name}</br>`))
+         
+
+               
      
           });
-          document.querySelector(".page-list .articles").innerHTML = articles;
+          document.querySelector(".page-list .articles").innerHTML = `<div class="row">${articles}</div>`;
         });
     };
     fetchList(`https://api.rawg.io/api/games?key=${key}&page_size=27`, argument);
