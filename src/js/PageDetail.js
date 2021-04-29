@@ -4,8 +4,8 @@ import { key } from './key'
 const PageDetail = (argument) => {
   const preparePage = () => {
 
-    let id = window.location.hash.substring(1).split("/")[1]
-    console.log(id)
+    let slug = window.location.hash.substring(1).split("/")[1]
+    console.log(slug)
     const fetchGame = (url) => {
       let finalURL = url;
 
@@ -27,8 +27,35 @@ const PageDetail = (argument) => {
           // image
           document.getElementById("gameimage").innerHTML = `<img id="mainImage" src=${background_image}>`
 
+          // screenshots 
+          fetch(`https://api.rawg.io/api/games/${slug}/screenshots?key=528babbc066842ebaf0b202ac5448d6e`)
+          .then((data) => data.json())
+          .then((data) => { 
+        
+            let {results} = data;
+            console.log(data);
+            results = results.slice(0,4)
 
-          // released date 
+           results.forEach(x  =>   document.getElementById("screenshots").innerHTML += `<img class="secondaryImages" src=${x.image}>`)
+          })
+
+        
+          // video
+
+          fetch(`https://api.rawg.io/api/games/${slug}/movies?key=528babbc066842ebaf0b202ac5448d6e`)
+          .then((movies) => movies.json())
+          .then((movies) =>  {
+
+          let {results} = movies;
+         document.getElementById("video").innerHTML = `
+         <video width="700" height="300" controls autoplay>
+         <source src=${results[0].data.max} type=video/mp4>
+         </video>`;
+            
+          })
+           
+    
+          // released date
 
           articleDOM.querySelector("p.release-date span").innerHTML = released;
           articleDOM.querySelector("p.description").innerHTML = description;
@@ -63,7 +90,8 @@ const PageDetail = (argument) => {
           // stores
           stores.forEach(x => articleDOM.querySelector("a.stores").innerHTML += `<br>${x.store.name} </br>`)
 
-           stores.forEach(x=> articleDOM.querySelector("a.stores").setAttribute('href', "https://" + x.store.domain)) // lien absolue
+           stores.forEach(x=> articleDOM.querySelector("a.stores").setAttribute('href', "https://" + x.store.domain)) 
+           // domain doit être utilisé en URL relatif
            
            //setAttribute('href', `${x.store.domain}`) )
 
@@ -77,7 +105,7 @@ const PageDetail = (argument) => {
     };
 
 
-    fetchGame(`https://api.rawg.io/api/games/${id}?key=${key}`)
+    fetchGame(`https://api.rawg.io/api/games/${slug}?key=${key}`)
   };
 
   const render = () => {
@@ -87,10 +115,18 @@ const PageDetail = (argument) => {
           <div id="gameimage">
           <img id="mainImage">
           </div>
+          <div id="video">
+          </div>
             <h1 class="title"></h1>
             <p class="release-date">Release date : <span></span></p>
             <p class="description"></p>
             <h1 class="title"></h1>
+           
+            
+            <div id="screenshots">
+  
+            </div>
+
             <a class="dev"></a>
             <a class="genres"></a>
             <a class="tags"></a>
@@ -115,14 +151,9 @@ export { PageDetail };
 
 
 
-// TODO: Le/Les lien(s) pour acheter le jeu (lien(s) externe(s))
-
-// TODO: Une liste de jeux ressemblants au jeu (lien interne vers un jeu sur PageDetail)
-// TODO: Une liste de vidéos YouTube parlant du jeu (Lien externe vers YouTube)
 
 // TODO: Une vidéo de présentation (Lecteur HTML 5 interne)
 
-// TODO: Quatre screenshots du jeu
 
 // TODO: Quan ya pas de lien (DEV) il faut pas l'afficher :function HIDE avec le if
 

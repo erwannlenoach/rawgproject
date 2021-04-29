@@ -9,3 +9,15 @@
 #mainImage {
   width: 700px;
 }
+
+.secondaryImages {
+  width: 700px;
+}
+
+.tags {
+  background-color: 0;
+}
+
+.genres {
+  background-color: blue;
+}
