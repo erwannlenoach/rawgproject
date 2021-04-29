@@ -1,8 +1,17 @@
 import { key } from './key'
+import dayjs from 'dayjs'
+
 
 function findGame(){
+
+ // let ps = document.getElementById("ps")
+ // if (ps.click){
+ //   let inputSearch = document.querySelector('.input-search').value + "&platforms=187"
+ //   return inputSearch
+ // } 
+    
   let inputSearch = document.querySelector('.input-search').value
-  console.log(inputSearch)
+
   PageList(inputSearch)
 
 }
@@ -11,7 +20,10 @@ window.findGame = findGame;
 
 function PageList(argument){
   const preparePage = () => {
-    let inputSearch = argument
+     
+    let now = dayjs().format('YYYY-MM-DD');
+    let releasedDate = dayjs().add(1, 'year').format('YYYY-MM-DD')
+  
 
     let articles = "";
 
@@ -19,25 +31,29 @@ function PageList(argument){
       let finalURL = url;
       if (argument) {
         finalURL = url + "&search=" + argument;
+      } else {
+        finalURL = url +  `&dates=${now},${releasedDate}`;
       }
+
+      // finalURL = finalURL + "&platforms=" + argument
 
       fetch(`${finalURL}`)
         .then((response) => response.json())
         .then((response) => {
           response.results.forEach((article) => {
             articles += `
-                    <div class="cardGame">
+                    <div card="cardGame"=>
                       <h1>${article.name}</h1>
-                      <h2>${article.released}</h2>
-                      <h2>${article.id}</h2>
-                      <a href = "#pagedetail/${article.id}">${article.id}</a>
+                      <h2>Release date: ${article.released}</h2>
+                      <a href = "#pagedetail/${article.id}">More information</a>
                     </div>
                   `;
+     
           });
           document.querySelector(".page-list .articles").innerHTML = articles;
         });
     };
-    fetchList(`https://api.rawg.io/api/games?key=${key}`, argument);
+    fetchList(`https://api.rawg.io/api/games?key=${key}&page_size=27`, argument);
   };
 
   const render = () => {
@@ -52,5 +68,7 @@ function PageList(argument){
 
   render();
 };
+function SortList(argument){
 
+}
 export { PageList };

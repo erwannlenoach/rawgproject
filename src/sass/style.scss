@@ -1,15 +1,21 @@
 
 @font-face {
-    font-family: 'Big Noodles';
-    src: url('../fonts/big_noodle_titling.ttf');
+    font-family: 'RUBBB';
+    src: url('../fonts/RUBBBB.ttf');
   }
 
-p {
-  font-family: 'Big Noodles'
-}
 
 body {
-    background-image: url('../images/videogame.png');
-    background-size: cover;
+   // background-image: url('../images/videogame.png');
+   // background-size: cover;
   }
 
+
+
+#buttons {
+  padding: 20px;
+}
+
+#mainImage {
+ width: 700px;
+}
