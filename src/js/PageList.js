@@ -77,7 +77,7 @@ function PageList(argument){
     let articles = "";
 
     const fetchList = (url, argument) => {
-      let finalURL = url + '&ordering=-released';
+      let finalURL = url //+ '&ordering=-released';
       if (argument) {
         finalURL = finalURL + "&search=" + argument;
       } else {
