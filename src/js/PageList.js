@@ -101,7 +101,7 @@ function PageList(argument){
                           <div>${ article.genres.map(g => g.name).sort().join(' - ') }</div>
                         </div>
                       </div>
-                      <h1>${article.name}</h1>
+                      <h1>${article.name}</h1> 
                       <p class="platforms"></p>
                       <a href = "#pagedetail/${article.slug}">More information</a>
                       <div class="logos">${ getListPlatformLogo(article.platforms) }</div>
