@@ -36,7 +36,7 @@ const PageDetail = (argument) => {
             console.log(data);
             results = results.slice(0,4)
 
-           results.forEach(x  =>   document.getElementById("screenshots").innerHTML += `<img class="secondaryImages" src=${x.image}>`)
+           results.forEach(x  => document.getElementById("screenshots").innerHTML += `<img class="secondaryImages" src=${x.image}>`)
           })
 
         
@@ -65,32 +65,36 @@ const PageDetail = (argument) => {
 
           // developers
 
-          developers.forEach(x => articleDOM.querySelector("a.dev").innerHTML += `<br>${x.name}</br>`)
-          articleDOM.querySelector("a.dev").setAttribute('href', "#pagelist")
-
+          if (developers && developers.length) {
+            articleDOM.querySelector(".dev").innerHTML = developers.map(x => `<a href="#pagelist">${x.name}</a>`).join(', ');
+          }
 
           // tags 
-          tags.forEach(x => articleDOM.querySelector("a.tags").innerHTML += `<br>${x.name}</br>`)
-          articleDOM.querySelector("a.tags").setAttribute('href', "#pagelist")
+          if (tags && tags.length) {
+            articleDOM.querySelector(".tags").innerHTML = tags.map(x => `<a href="#pagelist">${x.name}</a>`).join(', ');
+          }
 
           // genres 
-          genres.forEach(x => articleDOM.querySelector("a.genres").innerHTML += `<br>${x.name}</br>`)
-          articleDOM.querySelector("a.genres").setAttribute('href', "#pagelist")
+          if (genres && genres.length) {
+            articleDOM.querySelector(".genres").innerHTML = genres.map(x => `<a href="#pagelist">${x.name}</a>`).join(', ');
+          }
 
           // platforms 
-
-          platforms.forEach(x => articleDOM.querySelector("a.platforms").innerHTML += `<br>${x.platform.name}</br>`)
-          articleDOM.querySelector("a.platforms").setAttribute('href', "#pagelist")
+          if (platforms && platforms.length) {
+            articleDOM.querySelector(".platforms").innerHTML = platforms.map(x => `<a href="#pagelist">${x.platform.name}</a>`).join(', ');
+          }
 
           // amount of ratings 
           articleDOM.querySelector("p.ratingsamount").innerHTML = `<br>${ratings_count} notes : </br>`;
           // ratings
-          ratings.forEach(x => articleDOM.querySelector("a.ratings").innerHTML += `<br>${x.title} : ${x.percent} % </br>`);
+          if (ratings && ratings.length) {
+            articleDOM.querySelector(".ratings").innerHTML = ratings.map(x => `${x.title} : ${x.percent} %`).join(', ');
+          }
          
           // stores
-          stores.forEach(x => articleDOM.querySelector("a.stores").innerHTML += `<br>${x.store.name} </br>`)
-
-           stores.forEach(x=> articleDOM.querySelector("a.stores").setAttribute('href', "https://" + x.store.domain)) 
+          if (stores && stores.length) {
+            articleDOM.querySelector(".stores").innerHTML = stores.map(x => `<a href="https://${x.store.domain}">${x.store.name}</a>`).join(', ');
+          }
            // domain doit être utilisé en URL relatif
            
            //setAttribute('href', `${x.store.domain}`) )
@@ -113,10 +117,10 @@ const PageDetail = (argument) => {
         <section class="page-detail">
           <div class="article">
        
-            <h1 class="title"></h1>
             <div id="gameimage">
             <img id="mainImage">
             </div>
+            <h1 class="title"></h1>
             <div id="video">
             </div>
           
@@ -128,13 +132,27 @@ const PageDetail = (argument) => {
   
             </div>
             <p class="release-date">Release date : <span></span></p>
-            <a class="dev"></a>
-            <a class="genres"></a>
-            <a class="tags"></a>
-            <a class="platforms"></a>
+            <div class="row">
+              <div class="col-6 mb-3">
+                Developers:
+                <div class="dev"></div>
+              </div>
+              <div class="col-6 mb-3">
+                Genres:
+                <div class="genres"></div>
+              </div>
+              <div class="col-6 mb-3">
+                Tags:
+                <div class="tags"></div>
+              </div>
+              <div class="col-6 mb-3">
+                Platforms:
+                <div class="platforms"></div>
+              </div>
+            </div>
             <p class="ratingsamount"></p>
-            <a class="ratings"></a>
-            <a class="stores"></a>
+            <div class="ratings"></div>
+            <div class="stores"></div>
             <a class="website"></a>
           </div>
         </section>
@@ -153,11 +171,6 @@ export { PageDetail };
 
 
 
-// TODO: Une vidéo de présentation (Lecteur HTML 5 interne)
 
 
-// TODO: Quan ya pas de lien (DEV) il faut pas l'afficher :function HIDE avec le if
-
-// TODO: appli version .io + readme.Md  
-
-
+  

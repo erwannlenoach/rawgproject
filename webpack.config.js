@@ -93,7 +93,7 @@ module.exports = (env) => {
     plugins: [
       new MiniCssExtractPlugin({
         filename: 'bundle.css',
-      }),
+      })
     ],
 
 
@@ -101,9 +101,7 @@ module.exports = (env) => {
     // écrit ici, tu pourras appliquer différentes méthodes dans ton bundle final.
     // Pour le moment, nous avons besoin du mode "développement", car nous n'avons,
     // par exemple, pas besoin de minifier notre code.
-    mode: 'development',
-
-
+    mode: 'development'
   };
 
 }
