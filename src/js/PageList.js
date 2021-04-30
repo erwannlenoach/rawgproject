@@ -50,6 +50,21 @@ function getPlatformLogo(platform) {
   return '';
 }
 
+function getListPlatformLogo(platforms) {
+  if (!platforms) {
+    return '';
+  }
+
+  return Object.keys(
+    platforms
+      .map(p => getPlatformLogo(p.platform.slug))
+      .reduce((result, img) => {
+        result[img] = true;
+        return result;
+      }, {})
+  ).join('');
+}
+
 window.findGame = findGame;
 
 function PageList(argument){
@@ -62,11 +77,11 @@ function PageList(argument){
     let articles = "";
 
     const fetchList = (url, argument) => {
-      let finalURL = url;
+      let finalURL = url + '&ordering=-released';
       if (argument) {
-        finalURL = url + "&search=" + argument;
+        finalURL = finalURL + "&search=" + argument;
       } else {
-        finalURL = url +  `&dates=${now},${nextyear}`;
+        finalURL = finalURL +  `&dates=${now},${nextyear}`;
       }
 
       // finalURL = finalURL + "&platforms=" + argument
@@ -77,12 +92,19 @@ function PageList(argument){
           response.results.forEach((article) => {
             console.log(article)
             articles += `
-                    <div class="cardGame card col-4" style="width: 18rem; margin: 20px auto; background-color: rgb(25, 25, 25) ">
-                      <img src="${article.background_image}" class="card-img-top" alt="...">
+                    <div class="cardGame card col-sm-4 col-xs-12" style="width: 18rem; margin: 20px auto; background-color: rgb(25, 25, 25) ">
+                      <div class="background-image">
+                        <img src="${article.background_image}" class="card-img-top" alt="...">
+                        <div class="informations">
+                          <div>${ article.released }</div>
+                          <div>${ article.rating } / ${ article.rating_top } - ${ article.ratings_count } votes</div>
+                          <div>${ article.genres.map(g => g.name).sort().join(' - ') }</div>
+                        </div>
+                      </div>
                       <h1>${article.name}</h1>
                       <p class="platforms"></p>
                       <a href = "#pagedetail/${article.slug}">More information</a>
-                      <div class="logos">${ article.platforms.map(p => getPlatformLogo(p.platform.slug)).join('') }</div>
+                      <div class="logos">${ getListPlatformLogo(article.platforms) }</div>
                     </div>
                   `;
                   

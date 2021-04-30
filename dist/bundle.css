@@ -1,3 +1,12 @@
+header {
+  display: flex;
+  justify-content: space-between;
+}
+header h1 {
+  display: inline-block;
+  color: red;
+}
+
 @font-face {
   font-family: "RUBBB";
   src: url(fonts/3fa36c3620735bc919e017731451bca8.ttf);
@@ -23,11 +32,92 @@ body {
   background-color: 0;
 }
 
-.genres {
-  background-color: blue;
-}
-
 .cardGame {
   background-color: #191919;
   color: red;
+}
+.cardGame .background-image {
+  position: relative;
+}
+.cardGame .background-image .informations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: none;
+}
+.cardGame .background-image:hover img {
+  opacity: 0.1;
+}
+.cardGame .background-image:hover .informations {
+  display: block;
+}
+.cardGame .logos img {
+  margin-right: 10px;
+}
+
+a:not(.link-header)[href^="/"], a:not(.link-header)[href^="/"]:visited, a:not(.link-header)[href^="./"], a:not(.link-header)[href^="./"]:visited, a:not(.link-header)[href^="../"], a:not(.link-header)[href^="../"]:visited, a:not(.link-header)[href^="#"], a:not(.link-header)[href^="#"]:visited {
+  text-decoration: none;
+  position: relative;
+  color: #069;
+}
+a:not(.link-header)[href^="/"]:after, a:not(.link-header)[href^="/"]:visited:after, a:not(.link-header)[href^="./"]:after, a:not(.link-header)[href^="./"]:visited:after, a:not(.link-header)[href^="../"]:after, a:not(.link-header)[href^="../"]:visited:after, a:not(.link-header)[href^="#"]:after, a:not(.link-header)[href^="#"]:visited:after {
+  content: "";
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  background: #069;
+  transition: 0.2s;
+}
+a:not(.link-header)[href^="/"]:hover:after, a:not(.link-header)[href^="/"]:visited:hover:after, a:not(.link-header)[href^="./"]:hover:after, a:not(.link-header)[href^="./"]:visited:hover:after, a:not(.link-header)[href^="../"]:hover:after, a:not(.link-header)[href^="../"]:visited:hover:after, a:not(.link-header)[href^="#"]:hover:after, a:not(.link-header)[href^="#"]:visited:hover:after {
+  width: 100%;
+}
+a:not(.link-header)[href^="/"].block, a:not(.link-header)[href^="/"]:visited.block, a:not(.link-header)[href^="./"].block, a:not(.link-header)[href^="./"]:visited.block, a:not(.link-header)[href^="../"].block, a:not(.link-header)[href^="../"]:visited.block, a:not(.link-header)[href^="#"].block, a:not(.link-header)[href^="#"]:visited.block {
+  display: block;
+  padding: 0.5em;
+}
+a:not(.link-header)[href^="/"].block:hover, a:not(.link-header)[href^="/"]:visited.block:hover, a:not(.link-header)[href^="./"].block:hover, a:not(.link-header)[href^="./"]:visited.block:hover, a:not(.link-header)[href^="../"].block:hover, a:not(.link-header)[href^="../"]:visited.block:hover, a:not(.link-header)[href^="#"].block:hover, a:not(.link-header)[href^="#"]:visited.block:hover {
+  background: #eee;
+}
+a:not(.link-header)[href^=http] {
+  color: #069;
+  text-decoration: underline;
+}
+
+.page-detail #mainImage {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.page-detail #screenshots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.page-detail #screenshots .secondaryImages {
+  width: 48%;
+  margin-bottom: 20px;
+}
+
+footer {
+  position: relative;
+  font-size: small;
+  text-align: right;
+  margin-top: 60px;
+}
+footer:after {
+  content: "";
+  height: 3px;
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 100px;
+  background: red;
+}
+
+.input-search {
+  height: 31px;
+  position: relative;
+  top: 2px;
 }

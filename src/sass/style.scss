@@ -1,3 +1,12 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  
+  h1 {
+    display: inline-block;
+    color: red;
+  }
+}
 
 @font-face {
     font-family: 'RUBBB';
@@ -31,12 +40,116 @@ body {
  background-color: red($color: #000000);
 }
 
- .genres {
-  background-color: blue
-}
 
 .cardGame {
-
   background-color: rgb(25, 25, 25);
   color: red;
+
+  .background-image {
+    position: relative;
+
+    .informations {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: none;
+    }
+
+    &:hover {
+      img {
+        opacity: 0.1;
+      }
+      .informations {
+        display: block;
+      }
+    }
+  }
+
+  .logos img {
+    margin-right: 10px;
+  }
+}
+
+a:not(.link-header) {
+  &[href^='/'],
+  &[href^='./'],
+  &[href^='../'],
+  &[href^='#'] {
+    &, &:visited {
+      text-decoration: none;
+      position: relative;
+      color: #069;
+      
+      &:after {
+        content: '';
+        height: 3px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        background: #069;
+        transition: 0.2s;
+      }
+    
+      &:hover:after {
+        width: 100%;
+      }
+      
+      &.block {
+        display: block;
+        padding: 0.5em;
+        
+        &:hover {
+          background: #eee;
+        }
+      }
+    }
+  }
+
+  &[href^='http'] {
+    color: #069;
+    text-decoration: underline;
+  }
+}
+
+.page-detail {
+  #mainImage {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  #screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .secondaryImages {
+      width: 48%;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+footer {
+  position: relative;
+  font-size: small;
+  text-align: right;
+  margin-top: 60px;
+
+  &:after {
+    content: '';
+    height: 3px;
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 100px;
+    background: red;
+  }
+}
+
+.input-search {
+  height: 31px;
+  position: relative; 
+  top: 2px;
 }

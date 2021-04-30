@@ -8,13 +8,17 @@
   </head>
 
   <body>
+    <div class="container">
+      <header>
+        <a class="link-header" href="#pagelist"><h1>The Hyper Progame</h1></a>
+        <div id="game">
+          <input class="input-search" type="text" class="form-control-lg input-search" placeholder="nom du jeu">
+          <button id="button" class="btn btn-secondary btn-sm" type="submit" onclick="findGame()">Rechercher</button>
+      </div>
+      </header>
     <label for="findgame">
     </label><br>
   <div> 
-      <div id="game">
-          <input class="input-search" type="text" class="form-control-lg input-search" placeholder="nom du jeu">
-          <button id="button" class="btn btn-secondary" type="submit" onclick="findGame()">Rechercher</button>
-      </div>
 
   </div>
   <div id="buttons">
@@ -22,13 +26,11 @@
     <button type="button" class="btn btn-secondary" id="xbox">Xbox S</button>
     <button type="button" class="btn btn-danger" id="switch">Switch</button>
   </div>
-    <a href="#">Home</a>
-    <a href="#pagelist">PageList</a>
-    <a href="#pagedetail">PageDetail</a>
 
     <section id="pageContent">Choisissez un lien</section>
 
-
+    <footer>RawG Project - Teamates 2021 - THP : Session 16</footer>
+  </div>
     <script src="./dist/bundle.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

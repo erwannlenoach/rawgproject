@@ -1,5 +1,5 @@
 const Home = (argument = "") => {
-    console.log("Home", argument);
+    window.location.hash = 'pagelist';
   };
 
   export { Home };
